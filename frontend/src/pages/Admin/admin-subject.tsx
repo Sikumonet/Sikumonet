@@ -31,7 +31,6 @@ export default function AdminSubjectAdd() {
     useState("");
   const [academicYearId, setAcademicYearId] = useState("");
   const [imageFile, setImageFile] = useState<string | ArrayBuffer | null>(null);
-  const [selectedFileValue, setSelectedFileValue] = useState("");
   const [subjectsData, setSubjectsData] = useState([]);
 
   useEffect(() => {
@@ -146,10 +145,9 @@ export default function AdminSubjectAdd() {
         setSelectedInstitutionValue("");
         setSelectedDegreeProgramValue("");
         setSelectedAcademicYearValue("");
-        setSelectedFileValue("");
         handleGetAllSubjects();
         setLoadingSpinner(false);
-        toast.success("Added subject successfully");
+        window.location.reload();
       } else {
         setLoadingSpinner(false);
         toast.error(response.error);
@@ -267,7 +265,6 @@ export default function AdminSubjectAdd() {
             type="file"
             id="formUpload"
             name="image"
-            value={selectedFileValue}
             className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           />
         </div>

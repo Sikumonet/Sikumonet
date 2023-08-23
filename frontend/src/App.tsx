@@ -30,6 +30,7 @@ import UserInstitutionsView from "./pages/User/user-institutions-view";
 import UserSummaryEdit from "./pages/User/user-summary-edit";
 import UserSummaryView from "./pages/User/user-summary-view";
 import UserRearwards from "./pages/User/user-reawards";
+import UserSummaryAdd from "./pages/User/user-summary-add";
 
 function App() {
   return (
@@ -69,6 +70,10 @@ function App() {
             <Route
               path={VIEWS.USER_SUMMARIES_FEED}
               element={<UserSummariesFeed />}
+            />
+            <Route
+              path={VIEWS.USER_SUMMARY_SINGLE_ADD}
+              element={<UserSummaryAdd />}
             />
             <Route
               path={VIEWS.USER_SUMMARY_SINGLE_VIEW}

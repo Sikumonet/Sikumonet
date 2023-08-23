@@ -25,6 +25,18 @@ export const getAllSummariesRelatedToUser = async (userId: string) => {
   }
 };
 
+// Get all summaries related to the specific user API call
+export const getAllSummariesRelatedToSubject = async (userId: string) => {
+  try {
+    const response = await axios.get(
+      `${ENDPOINT.SUMMARY.GET_WITH_SUBJECT(userId)}`
+    );
+    return { success: true, data: response.data };
+  } catch (error: any) {
+    return { success: false, error: error.response.data.message };
+  }
+};
+
 // Get single subject details API call
 export const getSingleSummary = async (userId: string) => {
   try {

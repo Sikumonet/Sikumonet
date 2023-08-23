@@ -19,7 +19,6 @@ export default function AdminInstitutionAdd() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [imageFile, setImageFile] = useState<string | ArrayBuffer | null>(null);
-  const [selectedFile, setSelectedFile] = useState("");
   const [bearToken, setBearToken] = useState("");
   const [institutionData, setInstitutionData] = useState([]);
 
@@ -32,7 +31,6 @@ export default function AdminInstitutionAdd() {
   const handleImage = (e: any) => {
     const file = e.target.files[0];
     setFileToBase(file);
-    console.log(file);
   };
 
   const setFileToBase = (file: any) => {
@@ -48,7 +46,7 @@ export default function AdminInstitutionAdd() {
       toast.error("Please enter name..!!");
     } else if (location === "") {
       toast.error("Please enter location..!!");
-    } else if (imageFile === "") {
+    } else if (imageFile === null) {
       toast.error("Please select image file..!!");
     } else {
       try {
@@ -63,10 +61,9 @@ export default function AdminInstitutionAdd() {
           console.log("createInstitution", response.data);
           setName("");
           setLocation("");
-          setSelectedFile("");
           handleGetAllInstitutions();
           setLoadingSpinner(false);
-          toast.success("Added institution successfully");
+          window.location.reload();
         } else {
           setLoadingSpinner(false);
           toast.error(response.error);
@@ -123,7 +120,6 @@ export default function AdminInstitutionAdd() {
             type="file"
             id="formUpload"
             name="image"
-            value={selectedFile}
             className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           />
         </div>
