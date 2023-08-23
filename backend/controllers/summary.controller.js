@@ -82,6 +82,35 @@ const getAllSummariesRelatedToUser = asyncHandler(async (req, res) => {
   }
 });
 
+// @Description  - Get all summaries related to subject
+// @Route - GET /api/v1/summary/subject/:id
+// @Access - Public
+const getAllSummariesRelatedToSubject = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const summaries = await SummarySchema.find({
+      subject: id,
+    })
+      .populate("user")
+      .populate({
+        path: "subject",
+        populate: [
+          { path: "academicYear" },
+          { path: "institution" },
+          { path: "degreeProgram" },
+        ],
+      });
+    if (summaries.length === 0) {
+      res.status(400).json({ message: "Summaries not found..!!" });
+      throw new Error("Summaries not found..!!");
+    }
+    return res.status(200).json(summaries);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // @Description  - Get single summary
 // @Route - GET /api/v1/summary/:id
 // @Access - Public
@@ -237,6 +266,7 @@ const deleteSingleSummary = asyncHandler(async (req, res) => {
 
 module.exports = {
   getAllSummariesRelatedToUser,
+  getAllSummariesRelatedToSubject,
   getAllSummaries,
   getSingleSummary,
   createSummary,

@@ -17,7 +17,6 @@ export default function AdminDegreeAdd() {
   const [loadingSpinner, setLoadingSpinner] = useState(false);
   const [name, setName] = useState("");
   const [imageFile, setImageFile] = useState<string | ArrayBuffer | null>(null);
-  const [selectedFileValue, setSelectedFileValue] = useState("");
   const [bearToken, setBearToken] = useState("");
   const [institutionData, setInstitutionData] = useState([]);
   const [institutionId, setInstitutionId] = useState("");
@@ -71,10 +70,9 @@ export default function AdminDegreeAdd() {
           console.log("createInstitution", response.data);
           setName("");
           setSelectedInstitutionValue("");
-          setSelectedFileValue("");
           handleGetDegreePrograms();
           setLoadingSpinner(false);
-          toast.success("Added degree program successfully");
+          window.location.reload();
         } else {
           setLoadingSpinner(false);
           toast.error(response.error);
@@ -160,7 +158,6 @@ export default function AdminDegreeAdd() {
             type="file"
             id="formUpload"
             name="image"
-            value={selectedFileValue}
             className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           />
         </div>

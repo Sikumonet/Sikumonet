@@ -40,7 +40,7 @@ export default function TopNavbarComponent(props: {
                 </li>
                 <li>
                   <Link
-                    to={VIEWS.UPLOAD}
+                    to={VIEWS.USER_UPLOADS}
                     className="block py-2 pl-2 pr-4 text-gray-50 hover:text-gray-100"
                   >
                     Upload
@@ -48,7 +48,7 @@ export default function TopNavbarComponent(props: {
                 </li>
                 <li>
                   <Link
-                    to={VIEWS.RATING}
+                    to={VIEWS.USER_PROFILE}
                     className="block py-2 pl-2 pr-4 text-gray-50 hover:text-gray-100"
                   >
                     Rating

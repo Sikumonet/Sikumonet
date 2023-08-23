@@ -42,6 +42,7 @@ export const ENDPOINT = {
     GET_ALL: `${BASE_URL}summary`,
     GET_WITH_ID: (id: string) => `${BASE_URL}summary/${id}`,
     GET_WITH_USER: (id: string) => `${BASE_URL}summary/user/${id}`,
+    GET_WITH_SUBJECT: (id: string) => `${BASE_URL}summary/subject/${id}`,
   },
   RATING: {
     GET_ALL: `${BASE_URL}rating`,

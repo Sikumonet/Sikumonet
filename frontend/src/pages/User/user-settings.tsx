@@ -26,7 +26,6 @@ export default function UserSettings() {
 
   const [userAvatar, setUserAvatar] = useState("");
   const [imageFile, setImageFile] = useState<string | ArrayBuffer | null>(null);
-  const [selectedFile, setSelectedFile] = useState("");
   const [bearToken, setBearToken] = useState("");
   const [userId, setUserId] = useState("");
 
@@ -186,7 +185,6 @@ export default function UserSettings() {
         handleGetSingleUser(userId);
         setName("");
         setEmail("");
-        setSelectedFile("");
         setInstitutionId("");
         setDegreeProgramId("");
         setAcademicYearId("");
@@ -245,7 +243,6 @@ export default function UserSettings() {
             type="file"
             id="formUpload"
             name="image"
-            value={selectedFile}
             className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           />
         </div>

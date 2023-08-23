@@ -73,9 +73,19 @@ const signInUser = asyncHandler(async (req, res) => {
     // Check for user email
     const user = await UserSchema.findOne({ email });
 
+    if (!user) {
+      res
+        .status(400)
+        .json({ message: "There is no user associated with this email..!!" });
+      throw new Error("There is no user associated with this email..!!");
+    }
+
+    console.log("User : ", user);
+    console.log("Password : ", password);
+    console.log("User password : ", user.password);
+
     const isMatchPassword = await comparePassword(password, user.password);
     if (user && isMatchPassword) {
-      // Compare the email and password
       const tokenData = {
         id: user._id,
         name: user.name,

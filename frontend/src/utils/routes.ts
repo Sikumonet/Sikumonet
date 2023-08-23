@@ -20,6 +20,7 @@ export enum VIEWS {
   USER_UPLOADS = "/user/uploads",
   USER_DOWNLOADS = "/user/downloads",
   USER_PROFILE_SETTINGS = "/user/profile-settings",
+  USER_SUMMARY_SINGLE_ADD = "/user/summary/add",
   USER_SUMMARY_SINGLE_VIEW = "/user/summary/view",
   USER_SUMMARY_SINGLE_EDIT = "/user/summary/edit",
   USER_REARWARDS = "/user/rearwards",
