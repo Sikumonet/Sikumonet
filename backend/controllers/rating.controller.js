@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const RatingSchema = require("../models/rating.model");
 const SummarySchema = require("../models/summary.model");
 const { decodeJwt } = require("../utils/decode-jwt");
-const { updateSingleRearward } = require("./rearward.controller");
+const { updateSingleReward } = require("./reward.controller");
 
 // @Description  - Get all rating
 // @Route - GET /api/v1/rating
@@ -89,7 +89,7 @@ const createRating = asyncHandler(async (req, res) => {
         summaryAuthor: summaryData.user._id,
       });
       if (createdRating) {
-        const rewardsRating = await updateSingleRearward(
+        const rewardsRating = await updateSingleReward(
           summaryData.user._id,
           rating,
           null,

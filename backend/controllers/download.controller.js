@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const DownloadSchema = require("../models/download.model");
 const SummarySchema = require("../models/summary.model");
 const { decodeJwt } = require("../utils/decode-jwt");
-const { updateSingleRearward } = require("./rearward.controller");
+const { updateSingleReward } = require("./reward.controller");
 
 // @Description  - Get all downloads
 // @Route - GET /api/v1/download
@@ -105,13 +105,13 @@ const createDownload = asyncHandler(async (req, res) => {
         summaryAuthor: summaryData.user._id,
       });
       if (createdDownload) {
-        // const rearwardsDownloads = await updateSingleRearward(
+        // const rewardsDownloads = await updateSingleReward(
         //   summaryData.user._id,
         //   null,
         //   1,
         //   null
         // );
-        // console.log("rearwardsDownloads : ", rearwardsDownloads);
+        // console.log("rewardsDownloads : ", rewardsDownloads);
         res.status(201).json(createdDownload);
       } else {
         res.status(400).json({ message: "Invalid download data..!!" });

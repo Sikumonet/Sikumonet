@@ -12,7 +12,7 @@ const feedbackRoutes = require("./feedback.route");
 const statisticsRoutes = require("./statistics.route");
 const libraryRoutes = require("./library.route");
 const downloadRoutes = require("./download.route");
-const rearwardRoutes = require("./rearward.route");
+const rewardRoutes = require("./reward.route");
 
 //Initialize the all main routes
 router.use("/auth", authRoutes);
@@ -27,6 +27,6 @@ router.use("/feedback", feedbackRoutes);
 router.use("/statistics", statisticsRoutes);
 router.use("/library", libraryRoutes);
 router.use("/download", downloadRoutes);
-router.use("rearward", rearwardRoutes);
+router.use("reward", rewardRoutes);
 
 module.exports = router;

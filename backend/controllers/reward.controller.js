@@ -1,75 +1,74 @@
 const asyncHandler = require("express-async-handler");
-const RewardSchema = require("../models/rearward.model");
+const RewardSchema = require("../models/reward.model");
 const {
   RATING_WEIGHT,
   DOWNLOAD_WEIGHT,
   FEEDBACK_WEIGHT,
-} = require("../constants/reawards.contants");
+} = require("../constants/rewards.contants");
 
 // @Description  - Get rewards related to user
-// @Route - GET /api/v1/rearward/user/:id
+// @Route - GET /api/v1/reward/user/:id
 // @Access - Public
 const getRewardRelatedToUser = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
-    const rearward = await RewardSchema.find({
+    const reward = await RewardSchema.find({
       user: id,
     }).populate("user");
-    if (rearward.length === 0) {
+    if (reward.length === 0) {
       res.status(400).json({ message: "Reward not found..!!" });
       throw new Error("Reward not found..!!");
     }
-    return res.status(200).json(rearward);
+    return res.status(200).json(reward);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
   }
 });
 
-// @Description  - Create a rearward
+// @Description  - Create a reward
 // @Route - No end-point to the public usage
 // @Access - Public
-const createRearward = asyncHandler(async (userId) => {
+const createReward = asyncHandler(async (userId) => {
   try {
-    const createdRearward = await RewardSchema.create({
+    const createdReward = await RewardSchema.create({
       ratingScore: 0,
       downloadScore: 0,
       feedbackScore: 0,
       totalScore: 0,
       user: userId,
     });
-    if (createdRearward) {
-      console.log(createdRearward);
+    if (createdReward) {
+      console.log(createdReward);
     } else {
-      throw new Error("Invalid rearward data..!!");
+      throw new Error("Invalid reward data..!!");
     }
   } catch (error) {
     console.error(error);
   }
 });
 
-// @Description  - Update rearward
-// @Route - PUT /api/v1/rearward/:id
+// @Description  - Update reward
+// @Route - PUT /api/v1/reward/:id
 // @Access - Public
-const updateSingleRearward = asyncHandler(
+const updateSingleReward = asyncHandler(
   async (id, ratingScore, downloadScore, feedbackScore) => {
     try {
       const RATING_WEIGHT = 0.4;
       const DOWNLOAD_WEIGHT = 0.3;
       const FEEDBACK_WEIGHT = 0.3;
 
-      const rearward = await RewardSchema.findById({ user: id });
-      if (!rearward) {
-        throw new Error("Rearward not found..!!");
+      const reward = await RewardSchema.findById({ user: id });
+      if (!reward) {
+        throw new Error("Reward not found..!!");
       }
 
       // Calculate updated scores
-      const updatedRatingScore =
-        (rearward.ratingScore || 0) + (ratingScore || 0);
+      const updatedRatingScore = (reward.ratingScore || 0) + (ratingScore || 0);
       const updatedDownloadScore =
-        (rearward.downloadScore || 0) + (downloadScore || 0);
+        (reward.downloadScore || 0) + (downloadScore || 0);
       const updatedFeedbackScore =
-        (rearward.feedbackScore || 0) + (feedbackScore || 0);
+        (reward.feedbackScore || 0) + (feedbackScore || 0);
 
       // Calculate updated total score
       const updatedTotalScore =
@@ -85,17 +84,13 @@ const updateSingleRearward = asyncHandler(
         totalScore: updatedTotalScore,
       };
 
-      // Update the rearward document with the calculated scores
-      const updatedRearward = await RewardSchema.findByIdAndUpdate(
-        id,
-        updates,
-        {
-          new: true,
-        }
-      );
+      // Update the reward document with the calculated scores
+      const updatedReward = await RewardSchema.findByIdAndUpdate(id, updates, {
+        new: true,
+      });
 
-      console.log(updatedRearward);
-      return updatedRearward;
+      console.log(updatedReward);
+      return updatedReward;
     } catch (error) {
       console.error(error);
     }
@@ -104,6 +99,6 @@ const updateSingleRearward = asyncHandler(
 
 module.exports = {
   getRewardRelatedToUser,
-  createRearward,
-  updateSingleRearward,
+  createReward,
+  updateSingleReward,
 };

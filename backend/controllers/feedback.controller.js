@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const FeedbackSchema = require("../models/feedback.model");
 const SummarySchema = require("../models/summary.model");
 const { decodeJwt } = require("../utils/decode-jwt");
-const { updateSingleRearward } = require("./rearward.controller");
+const { updateSingleReward } = require("./reward.controller");
 
 // @Description  - Get all feedbacks
 // @Route - GET /api/v1/feedback
@@ -89,13 +89,13 @@ const createFeedback = asyncHandler(async (req, res) => {
         summaryAuthor: summaryData.user._id,
       });
       if (createdFeedback) {
-        // const rearwardsFeedbacks = await updateSingleRearward(
+        // const rewardsFeedbacks = await updateSingleReward(
         //   summaryData.user._id,
         //   null,
         //   null,
         //   1
         // );
-        // console.log("rearwardsFeedbacks : ", rearwardsFeedbacks);
+        // console.log("rewardsFeedbacks : ", rewardsFeedbacks);
         res.status(201).json(createdFeedback);
       } else {
         res.status(400).json({ message: "Invalid feedback data..!!" });

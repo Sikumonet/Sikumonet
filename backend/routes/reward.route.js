@@ -1,11 +1,9 @@
 const router = require("express").Router();
 const { ADMIN, USER } = require("../constants/user-roles.constants");
-const {
-  getRearwardRelatedToUser,
-} = require("../controllers/rearward.controller");
+const { getRewardRelatedToUser } = require("../controllers/reward.controller");
 
 //Public Routes
-router.get("/user/:id", getRearwardRelatedToUser);
+router.get("/user/:id", getRewardRelatedToUser);
 
 //Private Routes
 

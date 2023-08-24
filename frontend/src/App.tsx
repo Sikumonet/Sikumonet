@@ -29,7 +29,7 @@ import UserSubjectView from "./pages/User/user-subject-view";
 import UserInstitutionsView from "./pages/User/user-institutions-view";
 import UserSummaryEdit from "./pages/User/user-summary-edit";
 import UserSummaryView from "./pages/User/user-summary-view";
-import UserRewards from "./pages/User/user-reawards";
+import UserRewards from "./pages/User/user-rewards";
 import UserSummaryAdd from "./pages/User/user-summary-add";
 
 function App() {
@@ -86,7 +86,7 @@ function App() {
             <Route path={VIEWS.USER_PROFILE} element={<UserProfile />} />
             <Route path={VIEWS.USER_UPLOADS} element={<UserUploads />} />
             <Route path={VIEWS.USER_DOWNLOADS} element={<UserDownloads />} />
-            <Route path={VIEWS.USER_REARWARDS} element={<UserRewards />} />
+            <Route path={VIEWS.USER_REWARDS} element={<UserRewards />} />
             <Route
               path={VIEWS.USER_PROFILE_SETTINGS}
               element={<UserSettings />}

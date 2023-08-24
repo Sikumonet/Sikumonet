@@ -11,7 +11,7 @@ const UserSidebarComponent = () => {
   const [isOpenMyProfile, setIsOpenMyProfile] = useState(false);
   const [isOpenMyUploads, setIsOpenMyUploads] = useState(false);
   const [isOpenMyDownloads, setIsOpenMyDownloads] = useState(false);
-  const [isOpenRearwards, setIsOpenRearwards] = useState(false);
+  const [isOpenRewards, setIsOpenRewards] = useState(false);
   const [isOpenSettings, setIsOpenSettings] = useState(false);
 
   const handleChangeTab = (tabName: string) => {
@@ -24,7 +24,7 @@ const UserSidebarComponent = () => {
         setIsOpenMyProfile(false);
         setIsOpenMyUploads(false);
         setIsOpenMyDownloads(false);
-        setIsOpenRearwards(false);
+        setIsOpenRewards(false);
         setIsOpenSettings(false);
         break;
       case "ALL_SUMMARIES":
@@ -35,7 +35,7 @@ const UserSidebarComponent = () => {
         setIsOpenMyProfile(false);
         setIsOpenMyUploads(false);
         setIsOpenMyDownloads(false);
-        setIsOpenRearwards(false);
+        setIsOpenRewards(false);
         setIsOpenSettings(false);
         break;
       case "MY_LIBRARY":
@@ -46,7 +46,7 @@ const UserSidebarComponent = () => {
         setIsOpenMyProfile(false);
         setIsOpenMyUploads(false);
         setIsOpenMyDownloads(false);
-        setIsOpenRearwards(false);
+        setIsOpenRewards(false);
         setIsOpenSettings(false);
         break;
       case "SUMMARIES_FEED":
@@ -57,7 +57,7 @@ const UserSidebarComponent = () => {
         setIsOpenMyProfile(false);
         setIsOpenMyUploads(false);
         setIsOpenMyDownloads(false);
-        setIsOpenRearwards(false);
+        setIsOpenRewards(false);
         setIsOpenSettings(false);
         break;
       case "MY_PROFILE":
@@ -68,7 +68,7 @@ const UserSidebarComponent = () => {
         setIsOpenMyProfile(true);
         setIsOpenMyUploads(false);
         setIsOpenMyDownloads(false);
-        setIsOpenRearwards(false);
+        setIsOpenRewards(false);
         setIsOpenSettings(false);
         break;
       case "MY_UPLOADS":
@@ -79,7 +79,7 @@ const UserSidebarComponent = () => {
         setIsOpenMyProfile(false);
         setIsOpenMyUploads(true);
         setIsOpenMyDownloads(false);
-        setIsOpenRearwards(false);
+        setIsOpenRewards(false);
         setIsOpenSettings(false);
         break;
       case "MY_DOWNLOADS":
@@ -90,10 +90,10 @@ const UserSidebarComponent = () => {
         setIsOpenMyProfile(false);
         setIsOpenMyUploads(false);
         setIsOpenMyDownloads(true);
-        setIsOpenRearwards(false);
+        setIsOpenRewards(false);
         setIsOpenSettings(false);
         break;
-      case "REARWARDS":
+      case "REWARDS":
         setIsOpenDashboard(false);
         setIsOpenAllSummaries(false);
         setIsOpenMyLibrary(false);
@@ -101,7 +101,7 @@ const UserSidebarComponent = () => {
         setIsOpenMyProfile(false);
         setIsOpenMyUploads(false);
         setIsOpenMyDownloads(false);
-        setIsOpenRearwards(true);
+        setIsOpenRewards(true);
         setIsOpenSettings(false);
         break;
       case "SETTINGS":
@@ -112,7 +112,7 @@ const UserSidebarComponent = () => {
         setIsOpenMyProfile(false);
         setIsOpenMyUploads(false);
         setIsOpenMyDownloads(false);
-        setIsOpenRearwards(false);
+        setIsOpenRewards(false);
         setIsOpenSettings(true);
         break;
       default:
@@ -226,17 +226,17 @@ const UserSidebarComponent = () => {
           </li>
         </Link>
         <Link
-          to={VIEWS.USER_REARWARDS}
-          onClick={() => handleChangeTab("REARWARDS")}
+          to={VIEWS.USER_REWARDS}
+          onClick={() => handleChangeTab("REWARDS")}
         >
           <li
             className={`${
-              isOpenRearwards
+              isOpenRewards
                 ? "bg-slate-700 text-slate-100"
                 : "bg-blue-600 hover:blue-800 text-slate-100 hover:text-slate-200"
             } p-4 cursor-pointer`}
           >
-            <i className="fa-solid fa-gift mr-2"></i> Rearwards
+            <i className="fa-solid fa-gift mr-2"></i> Rewards
           </li>
         </Link>
         <Link

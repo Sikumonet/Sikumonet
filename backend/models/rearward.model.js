@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const rearwardSchema = mongoose.Schema(
+const rewardSchema = mongoose.Schema(
   {
     ratingScore: {
       type: Number,
@@ -34,4 +34,4 @@ const rearwardSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("rearwards", rearwardSchema);
+module.exports = mongoose.model("rewards", rewardSchema);

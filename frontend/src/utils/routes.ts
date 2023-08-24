@@ -23,7 +23,7 @@ export enum VIEWS {
   USER_SUMMARY_SINGLE_ADD = "/user/summary/add",
   USER_SUMMARY_SINGLE_VIEW = "/user/summary/view",
   USER_SUMMARY_SINGLE_EDIT = "/user/summary/edit",
-  USER_REARWARDS = "/user/rearwards",
+  USER_REWARDS = "/user/rewards",
 
   // ADMIN ROUTES
   ADMIN_DASHBOARD_LAYOUT = "/admin",

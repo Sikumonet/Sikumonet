@@ -70,8 +70,8 @@ export const ENDPOINT = {
     GET_WITH_SUMMARY: (summaryId: string) =>
       `${BASE_URL}download/summary/${summaryId}`,
   },
-  REARWARD: {
-    GET_WITH_ID: (id: string) => `${BASE_URL}rearward/${id}`,
-    GET_WITH_USER: (userId: string) => `${BASE_URL}rearward/user/${userId}`,
+  REWARD: {
+    GET_WITH_ID: (id: string) => `${BASE_URL}reward/${id}`,
+    GET_WITH_USER: (userId: string) => `${BASE_URL}reward/user/${userId}`,
   },
 };
