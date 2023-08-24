@@ -1,4 +1,4 @@
-export interface IRearwardData {
+export interface IRewardData {
   ratingScore?: string;
   downloadScore?: any;
   feedbackScore?: string;

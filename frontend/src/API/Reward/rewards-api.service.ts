@@ -1,12 +1,12 @@
 import axios from "axios";
 import { ENDPOINT } from "../api-endpoints.routes";
-import { IRearwardData } from "../../common/types/reawards-data.interface";
+import { IRewardData } from "../../common/types/rewards-data.interface";
 
-// Get all rearward related to the specific user API call
-export const getRearwardRelatedToUser = async (userId: string) => {
+// Get all reward related to the specific user API call
+export const getRewardRelatedToUser = async (userId: string) => {
   try {
     const response = await axios.get(
-      `${ENDPOINT.REARWARD.GET_WITH_USER(userId)}`
+      `${ENDPOINT.REWARD.GET_WITH_USER(userId)}`
     );
     return { success: true, data: response.data };
   } catch (error: any) {

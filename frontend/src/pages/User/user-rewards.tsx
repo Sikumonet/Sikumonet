@@ -14,13 +14,13 @@ import { getAllDegreeProgramsRelatedToInstitution } from "../../API/DegreeProgra
 import { getAllAcademicYearsRelatedToDegreeProgram } from "../../API/AcademicYears/academic-years-api.service";
 import { getAllInstitutions } from "../../API/Institutions/institutions-api.service";
 import DashboardCardComponent from "../../components/Dashboard/shared/dashboard-card.component";
-import { getRearwardRelatedToUser } from "../../API/Rearward/rewards-api.service";
+import { getRewardRelatedToUser } from "../../API/Reward/rewards-api.service";
 import RewardCardComponent from "../../components/Dashboard/User/reward-caard.component";
 
-export default function UserRearwards() {
+export default function UserRewards() {
   useScrollToTop();
   const [loadingSpinner, setLoadingSpinner] = useState(false);
-  const [rearwardStatistics, setRearwardStatistics] = useState({
+  const [rewardStatistics, setRewardStatistics] = useState({
     totalScore: 0,
     ratingScore: 0,
     downloadScore: 0,
@@ -38,10 +38,10 @@ export default function UserRearwards() {
 
   const handleGetUserStatistics = async (token: string) => {
     setLoadingSpinner(true);
-    const response = await getRearwardRelatedToUser(token);
+    const response = await getRewardRelatedToUser(token);
     if (response.success) {
       console.log(response.data);
-      setRearwardStatistics({
+      setRewardStatistics({
         totalScore: response.data.totalScore,
         ratingScore: response.data.ratingScore,
         downloadScore: response.data.downloadScore,
@@ -56,27 +56,27 @@ export default function UserRearwards() {
 
   return (
     <React.Fragment>
-      <h1 className="text-3xl text-slate-700 font-bold">Rearwards</h1>
+      <h1 className="text-3xl text-slate-700 font-bold">Rewards</h1>
       <div className="container mx-auto mt-12 mb-32">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           <DashboardCardComponent
             title={"Total Score"}
-            value={rearwardStatistics.totalScore}
+            value={rewardStatistics.totalScore}
             icon={"fa-solid fa-gift"}
           />
           <DashboardCardComponent
             title={"Rating Score"}
-            value={rearwardStatistics.ratingScore}
+            value={rewardStatistics.ratingScore}
             icon={"fa-solid fa-star"}
           />
           <DashboardCardComponent
             title={"Download Score"}
-            value={rearwardStatistics.downloadScore}
+            value={rewardStatistics.downloadScore}
             icon={"fa-solid fa-download"}
           />
           <DashboardCardComponent
             title={"Feedback Score"}
-            value={rearwardStatistics.feedbackScore}
+            value={rewardStatistics.feedbackScore}
             icon={"fa-solid fa-comments"}
           />
         </div>
