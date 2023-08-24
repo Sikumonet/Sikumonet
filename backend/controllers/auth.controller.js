@@ -4,7 +4,7 @@ const { generateJwtToken } = require("../utils/jwt.utils");
 const { hashPassword, comparePassword } = require("../utils/bycrypt.utils");
 const { USER } = require("../constants/user-roles.constants");
 const jwt = require("jsonwebtoken");
-const { createRearward } = require("./rearward.controller");
+const { createReward } = require("./reward.controller");
 
 // @Description  - Register user
 // @Route - POST /api/v1/auth/signup
@@ -45,7 +45,7 @@ const signUpUser = asyncHandler(async (req, res) => {
     });
     //Returning the user data in response
     if (registeredUser) {
-      await createRearward(registeredUser.id);
+      await createReward(registeredUser.id);
       res.status(201).json({
         _id: registeredUser.id,
         name: registeredUser.name,
