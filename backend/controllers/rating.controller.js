@@ -89,13 +89,13 @@ const createRating = asyncHandler(async (req, res) => {
         summaryAuthor: summaryData.user._id,
       });
       if (createdRating) {
-        const rearwardsRating = await updateSingleRearward(
+        const rewardsRating = await updateSingleRearward(
           summaryData.user._id,
           rating,
           null,
           null
         );
-        console.log("rearwardsRating : ", rearwardsRating);
+        console.log("rewardsRating : ", rewardsRating);
         res.status(201).json(createdRating);
       } else {
         res.status(400).json({ message: "Invalid rating data..!!" });

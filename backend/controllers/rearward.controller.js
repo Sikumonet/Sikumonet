@@ -1,23 +1,23 @@
 const asyncHandler = require("express-async-handler");
-const RearwardSchema = require("../models/rearward.model");
+const RewardSchema = require("../models/rearward.model");
 const {
   RATING_WEIGHT,
   DOWNLOAD_WEIGHT,
   FEEDBACK_WEIGHT,
 } = require("../constants/reawards.contants");
 
-// @Description  - Get rearwards related to user
+// @Description  - Get rewards related to user
 // @Route - GET /api/v1/rearward/user/:id
 // @Access - Public
-const getRearwardRelatedToUser = asyncHandler(async (req, res) => {
+const getRewardRelatedToUser = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
-    const rearward = await RearwardSchema.find({
+    const rearward = await RewardSchema.find({
       user: id,
     }).populate("user");
     if (rearward.length === 0) {
-      res.status(400).json({ message: "Rearward not found..!!" });
-      throw new Error("Rearward not found..!!");
+      res.status(400).json({ message: "Reward not found..!!" });
+      throw new Error("Reward not found..!!");
     }
     return res.status(200).json(rearward);
   } catch (error) {
@@ -31,7 +31,7 @@ const getRearwardRelatedToUser = asyncHandler(async (req, res) => {
 // @Access - Public
 const createRearward = asyncHandler(async (userId) => {
   try {
-    const createdRearward = await RearwardSchema.create({
+    const createdRearward = await RewardSchema.create({
       ratingScore: 0,
       downloadScore: 0,
       feedbackScore: 0,
@@ -58,7 +58,7 @@ const updateSingleRearward = asyncHandler(
       const DOWNLOAD_WEIGHT = 0.3;
       const FEEDBACK_WEIGHT = 0.3;
 
-      const rearward = await RearwardSchema.findById({ user: id });
+      const rearward = await RewardSchema.findById({ user: id });
       if (!rearward) {
         throw new Error("Rearward not found..!!");
       }
@@ -86,7 +86,7 @@ const updateSingleRearward = asyncHandler(
       };
 
       // Update the rearward document with the calculated scores
-      const updatedRearward = await RearwardSchema.findByIdAndUpdate(
+      const updatedRearward = await RewardSchema.findByIdAndUpdate(
         id,
         updates,
         {
@@ -103,7 +103,7 @@ const updateSingleRearward = asyncHandler(
 );
 
 module.exports = {
-  getRearwardRelatedToUser,
+  getRewardRelatedToUser,
   createRearward,
   updateSingleRearward,
 };
