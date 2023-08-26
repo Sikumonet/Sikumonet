@@ -17,6 +17,11 @@ const summarySchema = mongoose.Schema(
       required: [true, "Please enter the semester"],
       trim: true,
     },
+    year: {
+      type: String,
+      required: [true, "Please enter the year"],
+      trim: true,
+    },
     file: {
       public_id: {
         type: String,

@@ -143,8 +143,8 @@ const getSingleSummary = asyncHandler(async (req, res) => {
 // @Access - Public
 const createSummary = asyncHandler(async (req, res) => {
   try {
-    const { title, lectureName, semester, subject } = req.body;
-    if (!title || !subject || !lectureName || !semester) {
+    const { title, lectureName, semester, year, subject } = req.body;
+    if (!title || !subject || !lectureName || !semester || !year) {
       res.status(400).json({ message: "Please fill all fields..!!" });
       throw new Error("Please fill all fields..!!");
     }
@@ -168,6 +168,7 @@ const createSummary = asyncHandler(async (req, res) => {
       title,
       lectureName,
       semester,
+      year,
       file: {
         public_id: result.public_id,
         url: result.secure_url,
