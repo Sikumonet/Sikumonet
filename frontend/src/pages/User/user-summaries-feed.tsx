@@ -73,6 +73,7 @@ export default function UserSummariesFeed() {
               postTitle={item.title}
               lectureName={item.lectureName}
               semester={item.semester}
+              year={item.year}
               institution={item.subject.institution.name}
               degreeProgram={item.subject.degreeProgram.name}
               academicYear={item.subject.academicYear.name}

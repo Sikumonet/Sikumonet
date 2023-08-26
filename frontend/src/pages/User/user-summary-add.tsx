@@ -28,6 +28,7 @@ export default function UserSummaryAdd() {
   const [subject, setSubject] = useState("");
   const [lectureName, setLectureName] = useState("");
   const [semester, setSemester] = useState("");
+  const [year, setYear] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -62,8 +63,10 @@ export default function UserSummaryAdd() {
       toast.error("Please enter title..!!");
     } else if (lectureName === "") {
       toast.error("Please enter lectureName..!!");
-    } else if (subject === "") {
-      toast.error("Please subject..!!");
+    } else if (semester === "") {
+      toast.error("Please enter semester..!!");
+    } else if (year === "") {
+      toast.error("Please enter year..!!");
     } else if (file === null) {
       toast.error("Please select PDF file..!!");
     } else {
@@ -85,6 +88,9 @@ export default function UserSummaryAdd() {
         if (semester) {
           data.append("semester", semester);
         }
+        if (year) {
+          data.append("year", year);
+        }
 
         const response = await createSummary(bearToken, data);
         if (response.success) {
@@ -92,6 +98,7 @@ export default function UserSummaryAdd() {
           setTitle("");
           setLectureName("");
           setSemester("");
+          setYear("");
           setLoadingSpinner(false);
           window.location.reload();
         } else {
@@ -154,6 +161,13 @@ export default function UserSummaryAdd() {
             placeholder="Enter semester here"
             value={semester}
             onChange={setSemester}
+          />
+          <InputFieldComponent
+            label="Year"
+            type="text"
+            placeholder="Enter year here"
+            value={year}
+            onChange={setYear}
           />
           <div className="mt-10">
             <label

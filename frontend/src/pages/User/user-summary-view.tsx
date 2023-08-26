@@ -22,6 +22,7 @@ export default function UserSummaryView() {
     title: "",
     lectureName: "",
     semester: "",
+    year: "",
     institution: "",
     degreeProgram: "",
     academicYear: "",
@@ -30,6 +31,7 @@ export default function UserSummaryView() {
     userName: "",
     userAvatar: "",
     postedDate: "",
+    fileUrl: "",
   });
   const [loggedInUserId, setLoggedInUser] = useState("");
   const [feedbacksData, setFeedbacksData] = useState([]);
@@ -57,6 +59,7 @@ export default function UserSummaryView() {
         title: response.data.title,
         lectureName: response.data.lectureName,
         semester: response.data.semester,
+        year: response.data.year,
         institution: response.data.subject.institution.name,
         degreeProgram: response.data.subject.degreeProgram.name,
         academicYear: response.data.subject.academicYear.name,
@@ -65,6 +68,7 @@ export default function UserSummaryView() {
         userName: response.data.user.name,
         userAvatar: response.data.user.userAvatar.url,
         postedDate: response.data.createdAt,
+        fileUrl: response.data.file.url,
       });
       setLoadingSpinner(false);
     } else {
@@ -119,12 +123,14 @@ export default function UserSummaryView() {
         postTitle={summaryData.title}
         lectureName={summaryData.lectureName}
         semester={summaryData.semester}
+        year={summaryData.year}
         institution={summaryData.institution}
         degreeProgram={summaryData.degreeProgram}
         academicYear={summaryData.academicYear}
         subject={summaryData.subject}
         postedDate={summaryData.postedDate}
         isActionsDisplay={summaryData.userId === loggedInUserId ? false : true}
+        fileUrl={summaryData.fileUrl}
       />
       <div className="w-full grid grid-cols-2 gap-4 mt-20">
         <div className="rounded-xl bg-slate-100 h-fit p-5">
