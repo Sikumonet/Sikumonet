@@ -51,23 +51,7 @@ const getAllSummaries = asyncHandler(async (req, res) => {
 
     // Fetch ratings and downloads counts for each summary
     const summariesWithAnalytics = await Promise.all(
-      allSummaries.map(async (summary) => {
-        const ratings = await RatingSchema.find({ summary: summary._id });
-        const ratingCount = ratings.length;
-        const totalRating = ratings.reduce(
-          (total, rating) => total + rating.rating,
-          0
-        );
-        const averageRating = ratingCount > 0 ? totalRating / ratingCount : 0;
-        const downloadCount = await DownloadSchema.countDocuments({
-          summary: summary._id,
-        });
-        return {
-          ...summary.toObject(),
-          downloadCount,
-          averageRating,
-        };
-      })
+      allSummaries.map(summaryWithAnalytics)
     );
 
     return res.status(200).json(summariesWithAnalytics);
@@ -99,7 +83,10 @@ const getAllSummariesRelatedToUser = asyncHandler(async (req, res) => {
       res.status(400).json({ message: "Summaries not found..!!" });
       throw new Error("Summaries not found..!!");
     }
-    return res.status(200).json(summaries);
+    const summariesWithAnalytics = await Promise.all(
+      summaries.map(summaryWithAnalytics)
+    );
+    return res.status(200).json(summariesWithAnalytics);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -128,7 +115,10 @@ const getAllSummariesRelatedToSubject = asyncHandler(async (req, res) => {
       res.status(400).json({ message: "Summaries not found..!!" });
       throw new Error("Summaries not found..!!");
     }
-    return res.status(200).json(summaries);
+    const summariesWithAnalytics = await Promise.all(
+      summaries.map(summaryWithAnalytics)
+    );
+    return res.status(200).json(summariesWithAnalytics);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -155,7 +145,8 @@ const getSingleSummary = asyncHandler(async (req, res) => {
       res.status(400).json({ message: "Summary not found..!!" });
       throw new Error("Summary not found..!!");
     }
-    return res.status(200).json(summary);
+    const summaryWithAnalytics2 = await summaryWithAnalytics(summary);
+    return res.status(200).json(summaryWithAnalytics2);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -288,7 +279,23 @@ const deleteSingleSummary = asyncHandler(async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 });
-
+const summaryWithAnalytics = async (summary) => {
+  const ratings = await RatingSchema.find({ summary: summary._id });
+  const ratingCount = ratings.length;
+  const totalRating = ratings.reduce(
+    (total, rating) => total + rating.rating,
+    0
+  );
+  const averageRating = ratingCount > 0 ? totalRating / ratingCount : 0;
+  const downloadCount = await DownloadSchema.countDocuments({
+    summary: summary._id,
+  });
+  return {
+    ...summary.toObject(),
+    downloadCount,
+    averageRating,
+  };
+};
 module.exports = {
   getAllSummariesRelatedToUser,
   getAllSummariesRelatedToSubject,
