@@ -209,7 +209,7 @@ const SummaryCardComponent = (props: {
           <h2 className="text-md font-semibold">
             <i className="fa-solid fa-star mr-2"></i> Average Rating :
             <span className="text-slate-700 font-bold ml-4">
-              {props.averageRating.toFixed(2) || 0}
+              {props.averageRating || 0}
             </span>
           </h2>
         </div>
