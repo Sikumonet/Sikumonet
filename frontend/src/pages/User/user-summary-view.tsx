@@ -32,6 +32,8 @@ export default function UserSummaryView() {
     userAvatar: "",
     postedDate: "",
     fileUrl: "",
+    downloadCount: "",
+    averageRating: "",
   });
   const [loggedInUserId, setLoggedInUser] = useState("");
   const [feedbacksData, setFeedbacksData] = useState([]);
@@ -69,6 +71,8 @@ export default function UserSummaryView() {
         userAvatar: response.data.user.userAvatar.url,
         postedDate: response.data.createdAt,
         fileUrl: response.data.file.url,
+        downloadCount: response.data.downloadCount,
+        averageRating: response.data.averageRating,
       });
       setLoadingSpinner(false);
     } else {
@@ -131,6 +135,8 @@ export default function UserSummaryView() {
         postedDate={summaryData.postedDate}
         isActionsDisplay={summaryData.userId === loggedInUserId ? false : true}
         fileUrl={summaryData.fileUrl}
+        downloadCount={summaryData.downloadCount}
+        averageRating={summaryData.averageRating}
       />
       <div className="w-full grid grid-cols-2 gap-4 mt-20">
         <div className="rounded-xl bg-slate-100 h-fit p-5">

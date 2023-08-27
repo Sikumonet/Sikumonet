@@ -154,6 +154,8 @@ export default function UserSubjectView() {
               subject={item.subject.name}
               postedDate={item.createdAt}
               fileUrl={item.file.url}
+              downloadCount={item.downloadCount}
+              averageRating={item.averageRating}
               isSubActionsDisplay={true}
               isActionsDisplay={false}
             />

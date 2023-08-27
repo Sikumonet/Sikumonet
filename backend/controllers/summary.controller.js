@@ -1,5 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const SummarySchema = require("../models/summary.model");
+const RatingSchema = require("../models/rating.model");
+const DownloadSchema = require("../models/download.model");
 const { decodeJwt } = require("../utils/decode-jwt");
 const cloudinary = require("../config/cloudinary.config");
 const { extractingFileName } = require("../utils/extracting-file-name");
@@ -46,7 +48,29 @@ const getAllSummaries = asyncHandler(async (req, res) => {
           { path: "degreeProgram" },
         ],
       });
-    return res.status(200).json(allSummaries);
+
+    // Fetch ratings and downloads counts for each summary
+    const summariesWithAnalytics = await Promise.all(
+      allSummaries.map(async (summary) => {
+        const ratings = await RatingSchema.find({ summary: summary._id });
+        const ratingCount = ratings.length;
+        const totalRating = ratings.reduce(
+          (total, rating) => total + rating.rating,
+          0
+        );
+        const averageRating = ratingCount > 0 ? totalRating / ratingCount : 0;
+        const downloadCount = await DownloadSchema.countDocuments({
+          summary: summary._id,
+        });
+        return {
+          ...summary.toObject(),
+          downloadCount,
+          averageRating,
+        };
+      })
+    );
+
+    return res.status(200).json(summariesWithAnalytics);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });

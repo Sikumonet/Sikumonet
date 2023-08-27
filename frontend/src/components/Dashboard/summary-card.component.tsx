@@ -24,6 +24,8 @@ const SummaryCardComponent = (props: {
   subject: string;
   postedDate: string;
   fileUrl: string;
+  downloadCount: any;
+  averageRating: any;
   isSubActionsDisplay?: boolean;
   isActionsDisplay?: boolean;
 }) => {
@@ -103,12 +105,10 @@ const SummaryCardComponent = (props: {
   const handleDownloadCount = async () => {
     try {
       setLoadingSpinner(true);
-      handleDownloadFileIntoLocal();
       const response = await createDownload(bearToken, props.summaryId || "");
       if (response.success) {
         console.log("createDownload", response.data);
         setLoadingSpinner(false);
-        window.open(props.fileUrl, "_blank");
       } else {
         setLoadingSpinner(false);
         toast.error(response.error);
@@ -116,10 +116,6 @@ const SummaryCardComponent = (props: {
     } catch (error: any) {
       setLoadingSpinner(false);
     }
-  };
-
-  const handleDownloadFileIntoLocal = () => {
-    window.open(`${props.fileUrl}`, "_blank");
   };
 
   return (
@@ -203,6 +199,20 @@ const SummaryCardComponent = (props: {
             backgroundPosition: "center",
           }}
         /> */}
+        <div className="w-full flex flex-col text-slate-500 mt-14">
+          <h2 className="text-md font-semibold">
+            <i className="fa-solid fa-arrow-down mr-2"></i> Downloads :
+            <span className="text-slate-700 font-bold ml-4">
+              {props.downloadCount || 0}
+            </span>
+          </h2>
+          <h2 className="text-md font-semibold">
+            <i className="fa-solid fa-star mr-2"></i> Average Rating :
+            <span className="text-slate-700 font-bold ml-4">
+              {props.averageRating.toFixed(2) || 0}
+            </span>
+          </h2>
+        </div>
         {props.isSubActionsDisplay ? (
           <div className="flex flex-row justify-start items-start mt-8">
             <button
@@ -254,7 +264,9 @@ const SummaryCardComponent = (props: {
                 onClick={handleDownloadCount}
                 className="ml-auto bg-blue-500 text-white px-4 py-2 rounded-full"
               >
-                Download
+                <a href={props.fileUrl} target="_blank" download>
+                  Download
+                </a>
               </button>
             </div>
             <div className="mt-4">
