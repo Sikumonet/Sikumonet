@@ -2,7 +2,7 @@ Gal Katz 313417933
 Kfir Erlich 207480815
 Yuval Shohat 205894132
 
-git user: Sikumonet
+git user: Sikumonet :-
 git password : GoNanny2023,
 mongo atlas user: shohaty@gmail.com,
 mongo password: sikumonet,
